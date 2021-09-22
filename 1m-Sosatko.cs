@@ -24,10 +24,11 @@ namespace _1m_CryptoGraphs_Downloader
 
             //Dummy Variables
             //string TradingPair = "ADA-PERP";
-            //string Exchange = "FTX";
+            string Exchange = "FTX";
             //string StartDate = "10.09.2021";
             //string StopDate = "22.09.2021";
 
+            Console.WriteLine("-------------");
 
             Console.WriteLine("Vybrané volby");
             Console.Write("Symbol: ");
