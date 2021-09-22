@@ -1,0 +1,15 @@
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.exe
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.deps.json
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.runtimeconfig.json
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.runtimeconfig.dev.json
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.dll
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.pdb
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.csprojAssemblyReference.cache
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.AssemblyInfoInputs.cache
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.AssemblyInfo.cs
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.csproj.CoreCompileInputs.cache
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.dll
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.pdb
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.genruntimeconfig.cache
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Mcx\source\repos\1m-CryptoGraphs-Downloader\obj\Debug\netcoreapp3.1\1m-CryptoGraphs-Downloader.csproj.CopyComplete
