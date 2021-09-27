@@ -5,6 +5,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Data;
+using System.Diagnostics;
 
 namespace _1m_CryptoGraphs_Downloader
 {
@@ -15,7 +16,7 @@ namespace _1m_CryptoGraphs_Downloader
 
             //UI
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("Zadej prosím symbol (podporované zadání (ADAUSDT, ADA/USD) : ");
+            Console.Write("Zadej prosím symbol (podporované zadání (např. Binance (ADAUSDT), např FTX (ADA-PERP)) : ");
             Console.ForegroundColor = ConsoleColor.Green;
             string TradingPair = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
@@ -61,14 +62,16 @@ namespace _1m_CryptoGraphs_Downloader
             Console.WriteLine(StopDate);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            
 
+
+            // Definuj časový rozsah, jak v sekundách, tak v milisekundách.
             TimeSpan StartT = DateTime.Parse(StartDate) - DateTime.UnixEpoch;
             int StartT_seconds = (int)StartT.TotalSeconds;
             double StartT_miliseconds = (double)StartT.TotalMilliseconds;
             TimeSpan StopT = DateTime.Parse(StopDate) - DateTime.UnixEpoch;
             int StopT_seconds = (int)StopT.TotalSeconds;
             double StopT_miliseconds = (double)StopT.TotalMilliseconds;
+            //
 
             //
             string EnvPath = $@"%USERPROFILE%\Documents\1m-Grafy\{TradingPair}_{StartDate}_{StopDate}.csv";
@@ -79,10 +82,12 @@ namespace _1m_CryptoGraphs_Downloader
             string EnvCheckPath = $@"%USERPROFILE%\Documents\1m-Grafy";
             string CheckPath = Environment.ExpandEnvironmentVariables(EnvCheckPath);
 
+            //
             if (Directory.Exists(CheckPath))
             {
                 Console.WriteLine($"Adresář {CheckPath} existuje.");
-            } else
+            }
+            else
             {
                 Console.WriteLine($"Adresář {CheckPath} neexistuje. Vytvářím adresář.");
                 Directory.CreateDirectory(CheckPath);
@@ -93,6 +98,8 @@ namespace _1m_CryptoGraphs_Downloader
             Console.WriteLine();
             Console.WriteLine("Pro pokračování stiskni ENTER");
             Console.ReadLine();
+            //
+
 
             if (Exchange == "BINANCE")
             {
@@ -118,6 +125,9 @@ namespace _1m_CryptoGraphs_Downloader
                 StartT += 90000;
                 StopT = StartT + 90000;
 
+                timer.Reset();
+                timer.Start();
+
                 string URL = $"https://ftx.com/api/markets/{TradingPair}/candles?resolution=60&start_time={StartT}&end_time={StopT}";
 
                 WebRequest request = WebRequest.Create(URL);
@@ -127,24 +137,27 @@ namespace _1m_CryptoGraphs_Downloader
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
 
-                //Console.WriteLine(responseFromServer);
+                Console.Write($"WebRequest trval : {timer.ElapsedMilliseconds} ms, ");
+                timer.Stop();
 
                 FTX_Response FTX_Response = JsonConvert.DeserializeObject<FTX_Response>(responseFromServer);
 
-                //Console.WriteLine(FTX_Response.result.Count);
+                timer.Reset();
+                timer.Start();
 
                 int i = 0;
                 while (FTX_Response.result.Count > i)
                 {
                     //Console.WriteLine(FTX_Response.result[i].close);
 
-                    string closePrice = (FTX_Response.result[i].close).ToString("G").Replace(",",".");
+                    string closePrice = (FTX_Response.result[i].close).ToString("G").Replace(",", ".");
 
                     File.AppendAllText($@"{SavePath}", closePrice + Environment.NewLine);
                     i++;
                 }
 
-                Console.WriteLine($"Zapisuji data, {StartT} az {StopT}");
+                Console.WriteLine($"přečtení a zápis dat trval : {timer.ElapsedMilliseconds} ms.");
+                timer.Stop();
 
                 reader.Close();
                 dataStream.Close();
@@ -162,6 +175,8 @@ namespace _1m_CryptoGraphs_Downloader
 
             while (StartT < StopT_Loop)
             {
+                timer.Reset();
+                timer.Start();
 
                 string URL = $"https://api.binance.com/api/v3/klines?symbol={TradingPair}&interval=1m&startTime={StartT}&limit=1000";
 
@@ -172,9 +187,16 @@ namespace _1m_CryptoGraphs_Downloader
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
 
+                Console.Write($"WebRequest trval : {timer.ElapsedMilliseconds} ms, ");
+                timer.Stop();
+
                 JsonTextReader readerJson = new JsonTextReader(new StringReader(responseFromServer));
 
                 int i = 0;
+
+                timer.Reset();
+                timer.Start();
+
                 while (readerJson.Read())
                 {
                     //string tokenType = readerJson.TokenType;
@@ -220,7 +242,6 @@ namespace _1m_CryptoGraphs_Downloader
                             {
                                 //Console.Write("Close price : ");
                                 //Console.WriteLine(readerJson.Value);
-
                                 File.AppendAllText($@"{SavePath}", readerJson.Value + Environment.NewLine);
                             }
 
@@ -262,7 +283,7 @@ namespace _1m_CryptoGraphs_Downloader
                             //Pricti i, ale kdyby jsi nuloval, nepricitej pred pruchodem, ale zaroven, vime ze i max 9, takze pricti
                             //A pak vynuluj.
                             i++;
-                            
+
 
                             //Vynuluj Index
                             if (i == 9)
@@ -275,7 +296,8 @@ namespace _1m_CryptoGraphs_Downloader
                     }
                 }
 
-                Console.WriteLine($"Zapisuji data, {StartT} az {StopT}");
+                Console.WriteLine($"přečtení a zápis dat trval : {timer.ElapsedMilliseconds} ms.");
+                timer.Stop();
 
                 reader.Close();
                 dataStream.Close();
@@ -300,6 +322,7 @@ namespace _1m_CryptoGraphs_Downloader
             public List<FTX_result> result { get; set; }
         }
 
+        static Stopwatch timer = new Stopwatch();
     }
 }
 
