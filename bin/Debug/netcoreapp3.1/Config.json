@@ -1,0 +1,16 @@
+{
+	"Pairs": [
+		{
+		"TradingPair":"ADA-PERP",
+		"StartDate":"01.03.2021",
+		"StopDate":"01.10.2021",
+		"Exchange":"FTX"
+		},
+		{
+		"TradingPair":"CRO-PERP",
+		"StartDate":"01.03.2021",
+		"StopDate":"01.10.2021",
+		"Exchange":"FTX"
+		}
+	]
+}
