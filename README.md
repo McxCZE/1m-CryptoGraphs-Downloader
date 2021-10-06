@@ -25,6 +25,13 @@ Po úspěšném stáhnutí obdržím v programu tuto hlášku.
 
 Potvrdím enterem, program se vypnu, a mohu jít backtestit :)
 
+## Stahování více párů/grafů, či různé časové úseky.
+
+V případě že nechci po každé vypisovat co chci stahovat, je možnost přidat páry do **config.json** který je ve stejné složce jako **.exe** stahovátka. Formát je dle obrázku následující. Asi nejjednoduší a nejrychlejší je si zkopírovat předlohu, a při spuštění robota vybrat "A" jako ano, chci nechat stahovat dle konfiguračního souboru. Pak si akorát udělat čaj a vyčkat než se nastahují data. 
+
+![image](https://user-images.githubusercontent.com/2656561/136189102-fdb05384-cd02-47af-be57-463f95644daa.png)
+
+
 ## Spustím to, aplikace problikne a nic se neděje ? 
  
 Je potřeba s největší pravděpodobností stáhnout .NET Core 3.1 balíček, lze stáhnout zde : https://dotnet.microsoft.com/download/dotnet/3.1/runtime?utm_source=getdotnetcore&utm_medium=referral
