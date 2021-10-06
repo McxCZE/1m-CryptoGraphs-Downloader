@@ -414,7 +414,6 @@ namespace _1m_CryptoGraphs_Downloader
             public bool success { get; set; }
             public List<FTX_result> result { get; set; }
         }
-
         class JSON_Config
         {
             public string TradingPair { get; set; }
@@ -422,7 +421,6 @@ namespace _1m_CryptoGraphs_Downloader
             public string StopDate { get; set; }
             public string Exchange { get; set; }
         }
-
         class JSON_Configs
         {
             public List<JSON_Config> Pairs{ get; set;}
