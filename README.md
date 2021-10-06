@@ -25,7 +25,7 @@ Po úspěšném stáhnutí obdržím v programu tuto hlášku.
 
 Potvrdím enterem, program se vypnu, a mohu jít backtestit :)
 
-## Návod jak na to přidání více párů do konfiguračního souboru
+## Stahování více párů/grafů, či různé časové úseky.
 
 V případě že nechci po každé vypisovat co chci stahovat, je možnost přidat páry do **config.json** který je ve stejné složce jako **.exe** stahovátka. Formát je dle obrázku následující. Asi nejjednoduší a nejrychlejší je si zkopírovat předlohu, a při spuštění robota vybrat "A" jako ano, chci nechat stahovat dle konfiguračního souboru. Pak si akorát udělat čaj a vyčkat než se nastahují data. 
 
