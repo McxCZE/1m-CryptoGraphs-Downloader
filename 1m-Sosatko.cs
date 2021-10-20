@@ -165,9 +165,9 @@ namespace _1m_CryptoGraphs_Downloader
                     Console.ForegroundColor = ConsoleColor.White;
                     //
                     if (Exchange == "BINANCE")
-                        {
-                            BINANCE(TradingPair, Exchange, StartT_miliseconds, StopT_miliseconds, SavePath);
-                        }
+                    {
+                        BINANCE(TradingPair, Exchange, StartT_miliseconds, StopT_miliseconds, SavePath);
+                    }
 
                     if (Exchange == "FTX")
                     {
@@ -249,7 +249,11 @@ namespace _1m_CryptoGraphs_Downloader
                     i++;
                 }
 
-                Console.WriteLine($"přečtení a zápis dat trval : {timer.ElapsedMilliseconds} ms.");
+                // Unix timestamp is seconds past epoch
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddSeconds(StopT).ToLocalTime();
+
+                Console.WriteLine($"přečtení a zápis dat trval : {timer.ElapsedMilliseconds} ms. Stahuji data : {dateTime}");
                 timer.Stop();
 
                 reader.Close();
@@ -389,7 +393,11 @@ namespace _1m_CryptoGraphs_Downloader
                     }
                 }
 
-                Console.WriteLine($"přečtení a zápis dat trval : {timer.ElapsedMilliseconds} ms.");
+                // Unix timestamp is seconds past epoch
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddMilliseconds(StartT).ToLocalTime();
+
+                Console.WriteLine($"přečtení a zápis dat trval : {timer.ElapsedMilliseconds} ms. Stahuji data : {dateTime}");
                 timer.Stop();
 
                 reader.Close();
