@@ -154,27 +154,42 @@ namespace _1m_CryptoGraphs_Downloader
 
                     //
                     string EnvPath = $@"%USERPROFILE%\Documents\1m-Grafy\{TradingPair}_{StartDate}_{StopDate}.csv";
-                    string SavePath = (Environment.ExpandEnvironmentVariables(EnvPath)).Replace("/", "");
+                    string EnvFileCheck = Environment.ExpandEnvironmentVariables(EnvPath.Replace("/",""));
                     //
-
-                    // Info pro uživatele co vlastně aktuálně stahuje za pár, v případě výběru více párů. 
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Stahuji : ");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{TradingPair}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    //
-                    if (Exchange == "BINANCE")
+                    Console.Write(EnvFileCheck);
+                    // Nechce to ověřit jestli soubor existuje, je třeba dodělat. 
+                    if (File.Exists(EnvFileCheck))
                     {
-                        BINANCE(TradingPair, Exchange, StartT_miliseconds, StopT_miliseconds, SavePath);
-                    }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Tento pár je již stáhnutý : ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"{TradingPair}");
+                        Console.ForegroundColor = ConsoleColor.White;
 
-                    if (Exchange == "FTX")
+                        i++;
+                    } else
                     {
-                        FTX(TradingPair, Exchange, StartT_seconds, StopT_seconds, SavePath);
-                    }
+                        string SavePath = (Environment.ExpandEnvironmentVariables(EnvPath)).Replace("/", "");
 
-                    i++;
+                        // Info pro uživatele co vlastně aktuálně stahuje za pár, v případě výběru více párů. 
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Stahuji : ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"{TradingPair}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        //
+                        if (Exchange == "BINANCE")
+                        {
+                            BINANCE(TradingPair, Exchange, StartT_miliseconds, StopT_miliseconds, SavePath);
+                        }
+
+                        if (Exchange == "FTX")
+                        {
+                            FTX(TradingPair, Exchange, StartT_seconds, StopT_seconds, SavePath);
+                        }
+
+                        i++;
+                    }
                 }
 
             } else
