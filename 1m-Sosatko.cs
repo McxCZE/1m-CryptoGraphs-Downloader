@@ -152,11 +152,9 @@ namespace _1m_CryptoGraphs_Downloader
                     double StopT_miliseconds = (double)StopT.TotalMilliseconds;
                     //
 
-                    //
                     string EnvPath = $@"%USERPROFILE%\Documents\1m-Grafy\{TradingPair}_{StartDate}_{StopDate}.csv";
                     string EnvFileCheck = Environment.ExpandEnvironmentVariables(EnvPath.Replace("/",""));
-                    //
-                    Console.Write(EnvFileCheck);
+
                     // Nechce to ověřit jestli soubor existuje, je třeba dodělat. 
                     if (File.Exists(EnvFileCheck))
                     {
